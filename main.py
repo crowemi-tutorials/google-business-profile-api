@@ -24,7 +24,6 @@ def main():
         }
 
         response = service.googleLocations().search(body=search_request).execute()
-
         googleLocations = response.get('googleLocations', None)
 
         # check if the return contains any data
@@ -33,6 +32,8 @@ def main():
                 # write the data to a file
                 with open('./output.json', 'w') as f:
                     f.write(json.dumps(location))
+        else:
+            print('No locations found.')
 
     except Exception as e:
         print(e)
